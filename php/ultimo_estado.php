@@ -1,36 +1,27 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = ""; // Asegúrate de usar una contraseña en un entorno de producción
-$database = "lamp";
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'conectar_bd.php';
 
 // Verificar si se ha recibido el parámetro LampID en la solicitud GET
-if (isset($_GET['LampID'])) {
-    $lampID = $conn->real_escape_string($_GET['LampID']);
+if (isset($_GET['lampID'])) {
+    $lampID = $conn->real_escape_string($_GET['lampID']);
 
     // Obtener el último estado de la lámpara para el LampID proporcionado
-    $sqlGetEstado = "SELECT LampOnOff FROM t_iotlampv0 WHERE LampID = ? ORDER BY fecha_creacion DESC LIMIT 1";
+    $sqlGetEstado = "SELECT Nreg, LampOnOff FROM t_iotlampv0 WHERE LampID = ? ORDER BY fecha_creacion DESC LIMIT 1";
     $stmtGet = $conn->prepare($sqlGetEstado);
     $stmtGet->bind_param("s", $lampID);
     $stmtGet->execute();
     $resultadoEstado = $stmtGet->get_result();
 
     if ($fila = $resultadoEstado->fetch_assoc()) {
+        $nreg = $fila['Nreg'];
         $estadoActual = $fila['LampOnOff'];
         $nuevoEstado = ($estadoActual == 1) ? 2 : 1;
 
-        // Actualizar el estado de la lámpara en el último registro
-        $sqlUpdate = "UPDATE t_iotlampv0 SET LampOnOff = ? WHERE LampID = ? ORDER BY fecha_creacion DESC LIMIT 1";
+        // Actualizar el estado de la lámpara y la fecha de creación en el último registro
+        $sqlUpdate = "UPDATE t_iotlampv0 SET LampOnOff = ?, fecha_creacion = CURRENT_TIMESTAMP WHERE Nreg = ?";
         $stmtUpdate = $conn->prepare($sqlUpdate);
-        $stmtUpdate->bind_param("is", $nuevoEstado, $lampID);
+        $stmtUpdate->bind_param("ii", $nuevoEstado, $nreg);
 
         if ($stmtUpdate->execute()) {
             echo json_encode(["success" => true, "newState" => $nuevoEstado]);
