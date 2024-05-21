@@ -132,11 +132,12 @@ export function crearGraficoVidaUtil(datos, canvasId) {
   document.querySelector(`#${canvasId}`).chart = chart;
 
   // Mostrar alerta si alguna lámpara tiene menos del 10% de vida útil
+  /*
   datos.forEach((item) => {
     if (item.Estado === "ALERTA: Vida útil menor al 10%") {
       alert(
         `ALERTA: La lámpara ${item.LampID} tiene menos del 10% de vida útil restante.`
       );
     }
-  });
+  });*/
 }
