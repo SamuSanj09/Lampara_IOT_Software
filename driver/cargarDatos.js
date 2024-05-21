@@ -76,7 +76,7 @@ export function cargarDatos() {
 
       // Actualizar el color de fondo en función del último valor de LampOnOff
       if (data.ultimoLampOnOff.length > 0) {
-        actualizarColorFondo(data.ultimoLampOnOff[0].LampOnOff);
+        actualizarColorFondo(data.ultimoLampOnOff[0]);
       }
     })
     .catch((error) => console.error("Error al cargar los datos:", error));

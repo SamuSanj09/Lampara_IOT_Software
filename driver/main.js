@@ -14,19 +14,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   cargarDatos();
-  setInterval(cargarDatos, 10000);
+  setInterval(cargarDatos, 5000);
 
-  // Manejar el cambio de estado de la lámpara
+  // Cambiar el estado de la lámpara
   document
     .getElementById("button_cambiar_estado")
     .addEventListener("click", function () {
       const lampID = document.getElementById("lampIDInput").value;
-      fetch(`../php/ultimo_estado.php?lampID=${lampID}`)
+      const userID = document.getElementById("userIDInput").value;
+      fetch(`../php/ultimo_estado.php?LampID=${lampID}&UserID=${userID}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            console.log(`Estado de la lámpara cambiado a: ${data.newState}`);
-            cargarDatos(); // Volver a cargar los datos para actualizar los gráficos
+            console.log(
+              `El nuevo estado de la lámpara ${data.LampID} es: ${data.newState} cambiado por el usuario ${data.UserID}`
+            );
           } else {
             console.error(
               `Error al cambiar el estado de la lámpara: ${data.error}`
