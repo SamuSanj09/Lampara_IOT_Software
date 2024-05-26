@@ -26,12 +26,15 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `instrumento`
 --
-
 CREATE TABLE `instrumento` (
-  `id1` int(11) NOT NULL,
+  `id1` int(11) NOT NULL AUTO_INCREMENT,
   `valor` int(250) NOT NULL,
-  `sonido` varchar(250) NOT NULL
+  `sonido` varchar(250) NOT NULL,
+  `HoraFecha` datetime NOT NULL,
+  `nombre_instrumento` varchar(250) NOT NULL,
+  PRIMARY KEY (`id1`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Índices para tablas volcadas
