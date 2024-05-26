@@ -2,7 +2,7 @@
 $nombreServidor = "localhost";
 $nombreUsuario = "root";
 $contraseña = "";
-$nombreBD = "lamp";
+$nombreBD = "instrumentos";
 
 $conn = new mysqli($nombreServidor, $nombreUsuario, $contraseña, $nombreBD);
 
