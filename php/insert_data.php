@@ -5,14 +5,14 @@ require_once 'db.php';
 function insert_data($data) {
     $conn = connect_db();
 
-    $id1 = $conn->real_escape_string($data['id1']);
+    
     $valor = $conn->real_escape_string($data['valor']);
     $sonido = $conn->real_escape_string($data['sonido']);
     $HoraFecha = $conn->real_escape_string($data['HoraFecha']);
     $nombre_instrumento = $conn->real_escape_string($data['nombre_instrumento']);
 
     // SQL para insertar datos
-    $sql = "INSERT INTO instrumento (id1, valor, sonido, HoraFecha, nombre_instrumento) VALUES ('$id1', '$valor', '$sonido', '$HoraFecha', '$nombre_instrumento')";
+    $sql = "INSERT INTO instrumento ( valor, sonido, HoraFecha, nombre_instrumento) VALUES ('$valor', '$sonido', '$HoraFecha', '$nombre_instrumento')";
 
     // Ejecutar consulta
     if ($conn->query($sql) === TRUE) {
