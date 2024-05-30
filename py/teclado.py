@@ -2,7 +2,7 @@ import machine
 import utime
 
 # Configurar pines para filas y columnas (4 filas, 3 columnas)
-filas = [machine.Pin(i, machine.Pin.OUT) for i in (27, 26, 25, 24)]
+filas = [machine.Pin(i, machine.Pin.OUT) for i in (16, 17, 18, 19)]
 columnas = [machine.Pin(i, machine.Pin.IN, machine.Pin.PULL_UP) for i in (20, 21, 22)]
 
 # Definir matrices de sonidos para cada instrumento
