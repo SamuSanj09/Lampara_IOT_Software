@@ -1,5 +1,15 @@
 const instrumentosPrincipales = ['Guitarra', 'Tambor', 'Bateria', 'Caja de haija', 'Charango'];
+
+const imagenes = {
+    'Guitarra': 'images/guitarra.jpg',
+    'Tambor': 'images/tambor.jpg',
+    'Bateria': 'images/bateria.jpg',
+    'Caja de haija': 'images/caja_de_haija.jpg',
+    'Charango': 'images/charango.jpg'
+};
+
 let userInteracted = false;
+const sonidoReproducido = {};
 
 function playSound(instrument, sound) {
     const soundId = `${instrument.toLowerCase().replace(/ /g, '')}${sound.replace(/ /g, '')}`;
@@ -28,8 +38,18 @@ function fetchInstrumentData() {
                 if (instrumentoDiv) {
                     instrumentoDiv.className = 'instrumento ' + (valor == 2 ? 'tocado' : 'no-sonido');
                     instrumentoDiv.textContent = `${nombre} - ${valor == 2 ? sonido : 'No Emite Sonido'}`;
+                    instrumentoDiv.style.backgroundImage = `url(${imagenes[nombre]})`;
+                    
                     if (valor == 2 && sonido) {
-                        playSound(nombre, sonido);
+                        if (!sonidoReproducido[nombre]) {
+                            sonidoReproducido[nombre] = {};
+                        }
+                        if (!sonidoReproducido[nombre][sonido]) {
+                            playSound(nombre, sonido);
+                            sonidoReproducido[nombre][sonido] = true;
+                        }
+                    } else if (valor == 1 && sonidoReproducido[nombre]) {
+                        sonidoReproducido[nombre][sonido] = false;
                     }
                 }
             });
