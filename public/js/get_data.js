@@ -1,6 +1,19 @@
 const instrumentosPrincipales = ['Guitarra', 'Tambor', 'Bateria', 'Caja de Haija', 'Charango'];
+let userInteracted = false;
+
+function playSound(instrument, sound) {
+    const soundId = `${instrument.toLowerCase().replace(/ /g, '')}${sound.replace(/ /g, '')}`;
+    const audioElement = document.getElementById(soundId);
+    if (audioElement) {
+        audioElement.play().catch(error => {
+            console.log(`No se pudo reproducir el sonido: ${error}`);
+        });
+    }
+}
 
 function fetchInstrumentData() {
+    if (!userInteracted) return;
+
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "../php/get_data.php", true);
     xhr.onreadystatechange = function () {
@@ -11,10 +24,14 @@ function fetchInstrumentData() {
                 const valor = instrumentoData ? instrumentoData.valor : 1;
                 const sonido = instrumentoData ? instrumentoData.sonido : '';
                 const instrumentoDiv = document.getElementById(nombre);
+                
 
                 if (instrumentoDiv) {
                     instrumentoDiv.className = 'instrumento ' + (valor == 2 ? 'tocado' : 'no-sonido');
                     instrumentoDiv.textContent = `${nombre} - ${valor == 2 ? sonido : 'No Emite Sonido'}`;
+                    if (valor == 2 && sonido) {
+                        playSound(nombre, sonido);
+                    }
                 }
             });
         }
@@ -33,4 +50,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     setInterval(fetchInstrumentData, 1000); // Fetch data every 1 second
+
+    // Esperar la primera interacción del usuario
+    document.body.addEventListener('click', () => {
+        if (!userInteracted) {
+            userInteracted = true;
+            console.log("Usuario interactuó, reproducción de audio habilitada.");
+        }
+    }, { once: true });
 });
