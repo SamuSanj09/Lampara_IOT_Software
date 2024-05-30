@@ -1,6 +1,5 @@
 const instrumentosPrincipales = ['Guitarra', 'Tambor', 'Bateria', 'Caja de haija', 'Charango'];
 let userInteracted = false;
-let sonidoReproducido = {};
 
 function playSound(instrument, sound) {
     const soundId = `${instrument.toLowerCase().replace(/ /g, '')}${sound.replace(/ /g, '')}`;
@@ -29,12 +28,8 @@ function fetchInstrumentData() {
                 if (instrumentoDiv) {
                     instrumentoDiv.className = 'instrumento ' + (valor == 2 ? 'tocado' : 'no-sonido');
                     instrumentoDiv.textContent = `${nombre} - ${valor == 2 ? sonido : 'No Emite Sonido'}`;
-                    
-                    if (valor == 2 && sonido && !sonidoReproducido[soundId]) {
+                    if (valor == 2 && sonido) {
                         playSound(nombre, sonido);
-                        sonidoReproducido[soundId] = true; // Marcar como reproducido
-                    } else if (valor != 2 && sonidoReproducido[soundId]) {
-                        sonidoReproducido[soundId] = false; // Reiniciar estado si el sonido ya no está activo
                     }
                 }
             });
@@ -53,5 +48,13 @@ document.addEventListener("DOMContentLoaded", function() {
         container.appendChild(instrumentoDiv);
     });
 
-    setInterval(fetchInstrumentData
-        
+    setInterval(fetchInstrumentData, 1000); // Fetch data every 1 second
+
+    // Esperar la primera interacción del usuario
+    document.body.addEventListener('click', () => {
+        if (!userInteracted) {
+            userInteracted = true;
+            console.log("Usuario interactuó, reproducción de audio habilitada.");
+        }
+    }, { once: true });
+});
