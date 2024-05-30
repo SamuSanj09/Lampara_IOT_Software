@@ -7,42 +7,42 @@ columnas = [machine.Pin(i, machine.Pin.IN, machine.Pin.PULL_UP) for i in (20, 21
 
 # Definir matrices de sonidos para cada instrumento
 guitarra = [
-    ["Acorde G", "Acorde C", "Acorde D"],
-    ["Acorde E", "Acorde Am", "Acorde Em"],
-    ["Acorde F", "Rasgueo", "Punteo"],
+    ["Rasgueo 1", "Rasgueo 1", "Rasgueo 1"],
+    ["Rasgueo 2", "Rasgueo 2", "Rasgueo 2"],
+    ["Rasgueo 3", "Rasgueo 3", "Rasgueo 3"],
     ["0", "0", "0"]
 ]
 
 tambor = [
-    ["Tambor 1", "Tambor 2", "Tambor 3"],
-    ["Tambor 4", "Tambor 5", "Tambor 6"],
-    ["Tambor 7", "Tambor 8", "Tambor 9"],
+    ["Tambor 1", "Tambor 1", "Tambor 1"],
+    ["Tambor 2", "Tambor 2", "Tambor 2"],
+    ["Tambor 3", "Tambor 3", "Tambor 3"],
     ["0", "0", "0"]
 ]
 
 bateria = [
-    ["Bombo", "Caja", "Hi-hat"],
-    ["Tom 1", "Tom 2", "Tom 3"],
-    ["Bombo 2", "Caja 2", "Hi-hat 2"],
+    ["Bombo", "Bombo", "Bombo"],
+    ["Bombo", "Bombo", "Bombo"],
+    ["Platillo", "Platillo", "Platillo"],
     ["0", "0", "0"]
 ]
 
 caja_de_haija = [
-    ["Golpe 1", "Golpe 2", "Golpe 3"],
-    ["Golpe 4", "Golpe 5", "Golpe 6"],
-    ["Golpe 7", "Golpe 8", "Golpe 9"],
+    ["Golpe 1", "Golpe 1", "Golpe 1"],
+    ["Golpe 2", "Golpe 2", "Golpe 2"],
+    ["Golpe 3", "Golpe 3", "Golpe 3"],
     ["0", "0", "0"]
 ]
 
 charango = [
-    ["Nota G", "Nota C", "Nota D"],
-    ["Nota E", "Nota A", "Nota B"],
-    ["Nota F", "Rasgueo 1", "Rasgueo 2"],
+    ["Rasgueo 1", "Rasgueo 1", "Rasgueo 1"],
+    ["Rasgueo 2", "Rasgueo 2", "Rasgueo 2"],
+    ["Rasgueo 3", "Rasgueo 3", "Rasgueo 3"],
     ["0", "0", "0"]
 ]
 
 # Lista de nombres de instrumentos
-nombres_instrumentos = ["Guitarra", "Tambor", "Batería", "Caja de haija", "Charango"]
+nombres_instrumentos = ["Guitarra", "Tambor", "Batería", "c", "Charango"]
 
 # Inicialmente usamos el instrumento guitarra
 valores_matriz = guitarra

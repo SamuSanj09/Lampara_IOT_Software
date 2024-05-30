@@ -1,20 +1,14 @@
 <?php
-// Configuración de la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; // Asegúrate de usar una contraseña en un entorno de producción
-$database = "prueba_instrumentos";
+$password = "";
+$dbname = "instrumentos";
 
-// Función para crear la conexión a la base de datos
-function connect_db() {
-    global $servername, $username, $password, $database;
-    $conn = new mysqli($servername, $username, $password, $database);
+// Crear la conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Verificar conexión
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-    return $conn;
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 ?>

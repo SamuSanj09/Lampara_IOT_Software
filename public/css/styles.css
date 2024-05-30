@@ -1,0 +1,19 @@
+.instrumento {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: top;
+    font-size: 1.2em;
+    transition: background-color 0.5s;
+}
+.tocado {
+    background-color: #ffdddd;
+}
+.no-sonido {
+    background-color: #ddffdd;
+}

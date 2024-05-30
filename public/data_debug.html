@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Debug</title>
+    <script>
+        function sendData(nombre_instrumento, valor, sonido) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "../php/data_debug.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send(`nombre_instrumento=${nombre_instrumento}&valor=${valor}&sonido=${sonido}`);
+
+            // Esperar dos segundos antes de enviar el valor 0
+            setTimeout(() => {
+                const xhrReset = new XMLHttpRequest();
+                xhrReset.open("POST", "../php/data_debug.php", true);
+                xhrReset.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhrReset.onreadystatechange = function () {
+                    if (xhrReset.readyState === 4 && xhrReset.status === 200) {
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhrReset.send(`nombre_instrumento=${nombre_instrumento}&valor=1&sonido=${sonido}`);
+            }, 4000); // 2000 milisegundos = 2 segundos
+        }
+    </script>
+</head>
+<body>
+    <h1>Instrumentos</h1>
+    <div id="buttons">
+        <h2>Guitarra</h2>
+        <button onclick="sendData('Guitarra', 2, 'Rasgueo 1')">Acorde G</button>
+        <button onclick="sendData('Guitarra', 2, 'Rasgueo 2')">Acorde C</button>
+        <button onclick="sendData('Guitarra', 2, 'Rasgueo 3')">Acorde D</button>
+        <!-- Añadir otros botones de manera similar -->
+
+        <h2>Tambor</h2>
+        <button onclick="sendData('Tambor', 2, 'Tambor 1')">Tambor 1</button>
+        <button onclick="sendData('Tambor', 2, 'Tambor 2')">Tambor 2</button>
+        <button onclick="sendData('Tambor', 2, 'Tambor 3')">Tambor 3</button>
+        <!-- Añadir otros botones de manera similar -->
+
+        <h2>Batería</h2>
+        <button onclick="sendData('Batería', 2, 'Bombo')">Bombo</button>
+        <button onclick="sendData('Batería', 2, 'Bombo')">Caja</button>
+        <button onclick="sendData('Batería', 2, 'Platillo')">Hi-hat</button>
+        <!-- Añadir otros botones de manera similar -->
+
+        <h2>Caja de haija</h2>
+        <button onclick="sendData('Caja de haija', 2, 'Golpe 1')">Golpe 1</button>
+        <button onclick="sendData('Caja de haija', 2, 'Golpe 2')">Golpe 2</button>
+        <button onclick="sendData('Caja de haija', 2, 'Golpe 3')">Golpe 3</button>
+        <!-- Añadir otros botones de manera similar -->
+
+        <h2>Charango</h2>
+        <button onclick="sendData('Charango', 2, 'Rasgueo 1')">Nota G</button>
+        <button onclick="sendData('Charango', 2, 'Rasgueo 1')">Nota C</button>
+        <button onclick="sendData('Charango', 2, 'Rasgueo 1')">Nota D</button>
+        <!-- Añadir otros botones de manera similar -->
+    </div>
+</body>
+</html>
