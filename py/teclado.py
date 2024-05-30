@@ -22,8 +22,8 @@ tambor = [
 
 bateria = [
     ["Bombo", "Bombo", "Bombo"],
-    ["Bombo", "Bombo", "Bombo"],
-    ["Platillo", "Platillo", "Platillo"],
+    ["Caja", "Caja", "Caja"],
+    ["Hi-hat", "Hi-hat", "Hi-hat"],
     ["0", "0", "0"]
 ]
 
