@@ -2,14 +2,14 @@ import urequests
 import ujson
 from machine import RTC
 
-def send_data_to_database(instrumento, valor, sonido, nombre_instrumento):
-    url = "http://192.168.0.17/subida1.php"
+def send_data_to_database(valor, sonido, nombre_instrumento):
+    url = "http://192.168.1.212/Lampara_IOT/php/subida.php"
+    #Cambias esta url
     rtc = RTC()
     current_time = rtc.datetime()
     fecha_hora = f"{current_time[0]:04d}-{current_time[1]:02d}-{current_time[2]:02d} {current_time[4]:02d}:{current_time[5]:02d}:{current_time[6]:02d}"
 
     data = {
-        'id1': instrumento,
         'valor': valor,
         'sonido': sonido,
         'HoraFecha': fecha_hora,

@@ -49,6 +49,8 @@ valores_matriz = guitarra
 instrumentos = [guitarra, tambor, bateria, caja_de_haija, charango]
 instrumento_actual = 0
 
+estado_anterior = [[0 for _ in columnas] for _ in filas]
+
 def matriz_estado():
     global valores_matriz, instrumento_actual
     instrumento_actual = (instrumento_actual + 1) % len(instrumentos)
@@ -56,6 +58,7 @@ def matriz_estado():
     print(f"Cambiado a {nombres_instrumentos[instrumento_actual]}")
 
 def escanear_botones():
+    estados = []
     for i, fila in enumerate(filas):
         fila.low()  # Activar la fila actual (baja)
         for j, columna in enumerate(columnas):
@@ -65,7 +68,20 @@ def escanear_botones():
                     print(f"Botón de cambio presionado: ({i}, {j}), Valor: {valor}")
                     matriz_estado()
                 else:
-                    print(f"Botón presionado: ({i}, {j}), Valor: {valor}")
+                    if estado_anterior[i][j] == 0:  # Si el estado anterior era 0, se acaba de presionar
+                        print(f"Botón presionado: ({i}, {j}), Valor: {valor}")
+                        estados.append((instrumento_actual, valor, 2))
+                    estado_anterior[i][j] = 1  # Actualizar el estado a presionado
                 while not columna.value():  # Esperar a que se libere el botón
                     utime.sleep_ms(10)
+            else:
+                if estado_anterior[i][j] == 1:  # Si el estado anterior era 1, se acaba de soltar
+                    valor = valores_matriz[i][j]
+                    estados.append((instrumento_actual, valor, 1))
+                    print(f"Botón soltado: ({i}, {j}), Valor: {valor}")
+                estado_anterior[i][j] = 0  # Actualizar el estado a no presionado
         fila.high()  # Desactivar la fila actual (alta)
+    return estados
+
+def obtener_estado_botones():
+    return escanear_botones()
