@@ -42,7 +42,7 @@ charango = [
 ]
 
 # Lista de nombres de instrumentos
-nombres_instrumentos = ["Guitarra", "Tambor", "Batería", "c", "Charango"]
+nombres_instrumentos = ["Guitarra", "Tambor", "Bateria", "Caja de haija", "Charango"]
 
 # Inicialmente usamos el instrumento guitarra
 valores_matriz = guitarra
@@ -79,6 +79,7 @@ def escanear_botones():
                     valor = valores_matriz[i][j]
                     estados.append((instrumento_actual, valor, 1))
                     print(f"Botón soltado: ({i}, {j}), Valor: {valor}")
+                    utime.sleep_ms(50)  # Tiempo de debounce
                 estado_anterior[i][j] = 0  # Actualizar el estado a no presionado
         fila.high()  # Desactivar la fila actual (alta)
     return estados
