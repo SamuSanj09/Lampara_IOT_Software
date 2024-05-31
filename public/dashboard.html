@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Lámpara IoT</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .chart-container {
+            width: calc(45% - 30px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+            transition: transform 0.2s ease-in-out;
+        }
+        .chart-container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        label {
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            margin-right: 10px;
+        }
+        /* Fix para los botones de Bootstrap */
+        button[type="submit"],
+        button[type="button"] {
+            cursor: pointer;
+        }
+        /* Estilo adicional para los botones */
+        #button_cambiar_estado {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard y Control de Datos Proyecto</h1>
+    <div class="container">
+        <!-- Contenedores para los gráficos -->
+        <div class="chart-container">
+            <canvas id="Grafico1"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="Grafico2"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="Grafico3"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="Grafico4"></canvas>
+        </div>
+        
+        
+    </div>
+    <!-- Formulario -->
+    <form id="formulario_lamp_id" style="position: fixed; right: 0; bottom: 0; margin: 10px;">
+        <label for="lamp_id">Ingrese el instrumento:</label>
+        <input type="text" id="nombre_instrumento" name="nombre_instrumento">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <script src="../public/js/obtener_datos.js"></script>
+</body>
+</html>
