@@ -79,7 +79,7 @@ def escanear_botones():
                     valor = valores_matriz[i][j]
                     estados.append((instrumento_actual, valor, 1))
                     print(f"Botón soltado: ({i}, {j}), Valor: {valor}")
-                    utime.sleep_ms(50)  # Tiempo de debounce
+                    utime.sleep_ms(90)  # Tiempo de debounce
                 estado_anterior[i][j] = 0  # Actualizar el estado a no presionado
         fila.high()  # Desactivar la fila actual (alta)
     return estados
