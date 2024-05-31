@@ -96,3 +96,86 @@ body {
 #uniqueButton:hover {
   background-color: #2980b9;
 }
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 20px 0;
+  color: #34495e;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#buttons h2 {
+  margin-top: 40px;
+}
+
+button {
+  display: inline-block;
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #1c6ea4;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* New class for styled buttons */
+.styled-button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.styled-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.styled-button:active {
+  background-color: #1c6ea4;
+}
+
+.styled-button:focus {
+  outline: none;
+}
