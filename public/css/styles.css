@@ -112,6 +112,12 @@ h1 {
   color: #2c3e50;
 }
 
+text {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
 h2 {
   font-size: 2em;
   margin: 20px 0;
@@ -178,4 +184,15 @@ button:focus {
 
 .styled-button:focus {
   outline: none;
+}
+
+.styled-header {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ecf0f1;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
 }
